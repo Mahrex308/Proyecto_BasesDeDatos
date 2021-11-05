@@ -34,6 +34,9 @@ def altas_cientificos():
     cone_bd.commit()
     cone_bd.close()
 
+    # FALTAN LAS VALIDACIONES DE QUE SOLO SEAN NUMEROS EN EL "ID" Y EN "NUMERO TELEFONICO"
+    # Comprobar con el doc
+    # Corregir ortografia dentro de los mensajes de error y de los input
 
 
 # Op 2 - Baja de cientificos 
@@ -42,6 +45,27 @@ def bajas_cientificos():
     print("--------------------------------------------------")
     print("--------------- BAJA DE CIENTIFICOS --------------")
     print("--------------------------------------------------")
+    id_ci=lb.pide_cadena(5, 5, "Indica el ID del cientifico a eliminar : ")
+
+    query="DELETE FROM cientificos WHERE id_ci'"+id_ci+"'"
+    seguro=lb.pide_cadena(1, 1, "¿Seguro de querer eliminar? [S/N] : ")
+    seguro=seguro.upper()
+    if seguro=="S":
+        cone_bd=lb.conectar_bd()
+        cursor=cone_bd.cursor()
+        x=cursor.execute(query)
+        if x==0:
+            lb.error("ERROR, ID inexistente en el archivo de alumnos")
+        else:
+            lb.error("El registro ha sido eliminado correctamente")
+        cone_bd.commit()
+        cone_bd.close()
+    else:
+        lb.error("La accion de eliminar ha sido cancelada")
+
+    # Probar las validaciones
+    # Checar la ortografia
+
     
 # Op 3 - Consulta de cientificos
 def consulta_cientificos():
