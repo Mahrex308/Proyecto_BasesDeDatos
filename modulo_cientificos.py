@@ -6,6 +6,35 @@ def altas_cientificos():
     print("--------------------------------------------------")
     print("--------------- ALTA DE CIENTIFICOS --------------")
     print("--------------------------------------------------")
+    id_ci=lb.pide_cadena(5, 5,      "Indica el ID                 : ")
+    nombre_ci=lb.pide_cadena(1, 15, "Indica el Nombre             : ")
+    ap_ci=lb.pide_cadena(1, 15,     "Indica el Ap. Paterno        : ")
+    am_ci=lb.pide_cadena(1, 15,     "Indica el Ap. Materno        : ")
+    tel_ci=lb.pide_cadena(10, 10,   "Indica el Numero de telefono : ")
+    correo_ci=lb.pide_cadena(1, 30, "Indica el Correo             : ")
+
+    cone_bd=lb.conectar_bd()
+    cursor=cone_bd.cursor()
+    query="INSERT INTO cientificos VALUES ('"+id_ci+"','"+nombre_ci+"','"+ap_ci+"','"+am_ci+"','"+tel_ci+"','"+correo_ci+"')"
+
+    # print(query)
+    seguro=lb.pide_cadena(1, 1, "Los datos son correctos ¿Desea grabar? [S/N] : ")
+    seguro=seguro.upper()
+    if seguro=="S":
+        try:
+            x=cursor.execute(query)
+        except:
+            x=0
+        if x==0:
+            lb.error("ERROR, el ID se duplica en el archivo de alumnos")
+        else:
+            lb.error("Los datos han sido grabados correctamente")
+    else:
+        lb.error("La accion de grabar ha sido cancelada")
+    cone_bd.commit()
+    cone_bd.close()
+
+
 
 # Op 2 - Baja de cientificos 
 def bajas_cientificos():
