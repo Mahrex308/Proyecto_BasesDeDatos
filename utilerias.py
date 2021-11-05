@@ -43,3 +43,4 @@ def pausa():
 def conectar_bd():
     cone_bd=my.connect(host="localhost",user="root",password="",database="sistema_alumnos_materia_clase")
     return(cone_bd)
+    # Checar
