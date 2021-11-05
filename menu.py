@@ -1,9 +1,11 @@
 import utilerias as lb
 
+import modulo_cientificos as mc
+# import modulo_proyectos as mp
 
 def menu_principal():
     op=-1
-    while op!=0:
+    while op!=4:
         lb.limpia_pantalla()
         print("--------------------------------------------------")
         print("----------------- MENU PRINCIPAL -----------------")
@@ -13,15 +15,17 @@ def menu_principal():
         print("3)  Reportes")
         print("4)  Terminar")
 
-        op=lb.pide_entero(0, 4, "Indica la opcion deseada : ")
+        op=lb.pide_entero(1, 4, "Indica la opcion deseada : ")
         if op==1:
-            # Menu de Cientificos
+            mc.menu_cientificos()
         if op==2:
-            # Menu de Proyectos
+            print("Opcion 2")
         if op==3:
             # Menu de Reportes
+            print("Opcion 3")
         if op==4:
             # Terminar
+            print("Opcion 4")
 
 # Principal
-menu_principal()
+menu_principal() 

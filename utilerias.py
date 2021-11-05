@@ -22,9 +22,24 @@ def pide_flotante(Li, Ls, Let):
             input()
     return(valor)
 
+def pide_cadena(Li, Ls, Let):
+    longitud=Li-1
+    while longitud<Li or longitud>Ls:
+        cadena=input(Let)
+        longitud=len(cadena)
+        if longitud<Li or longitud>Ls:
+            print("Error")
+            input()
+    return(cadena)
 
 def error(Let):
     print(Let)
     print("Oprima [Enter] para continuar")
     input()
 
+def pausa():
+    input("[ENTER] para continuar")
+
+def conectar_bd():
+    cone_bd=my.connect(host="localhost",user="root",password="",database="sistema_alumnos_materia_clase")
+    return(cone_bd)
