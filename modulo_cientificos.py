@@ -1,5 +1,6 @@
 import utilerias as lb
 
+
 # Op. 1 - Baja de cientificos 
 def altas_cientificos():
     lb.limpia_pantalla()
