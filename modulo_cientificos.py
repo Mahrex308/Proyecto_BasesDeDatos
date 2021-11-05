@@ -47,7 +47,7 @@ def bajas_cientificos():
     print("--------------------------------------------------")
     id_ci=lb.pide_cadena(5, 5, "Indica el ID del cientifico a eliminar : ")
 
-    query="DELETE FROM cientificos WHERE id_ci'"+id_ci+"'"
+    query="DELETE FROM cientificos WHERE id_ci='"+id_ci+"'"
     seguro=lb.pide_cadena(1, 1, "¿Seguro de querer eliminar? [S/N] : ")
     seguro=seguro.upper()
     if seguro=="S":
@@ -73,6 +73,23 @@ def consulta_cientificos():
     print("--------------------------------------------------")
     print("------------- CONSULTA DE CIENTIFICOS ------------")
     print("--------------------------------------------------")
+    id_ci=lb.pide_cadena(5, 5, "Indica el ID del cientifico a consultar : ")
+    
+    query="SELECT * FROM cientificos WHERE id_ci='"+id_ci+"'"
+    cone_bd=lb.conectar_bd()
+    cursor=cone_bd.cursor()
+    x=cursor.execute(query)
+    if x==0:
+        lb.error("ERROR, matricula inexistente en el archivo de alumnos")
+    else:
+        datos_cientificos=cursor.fetchone()
+        print("Nombre             : ",datos_cientificos[1])
+        print("Ap. Paterno        : ",datos_cientificos[2])
+        print("Ap. Materno        : ",datos_cientificos[3])
+        print("Numero de telefono : ",datos_cientificos[4])
+        print("Correo             : ",datos_cientificos[5])
+        lb.error(" ")
+    cone_bd.close()
 
 # Op 4 - Cambios de cientificos
 def cambios_cientificos():
