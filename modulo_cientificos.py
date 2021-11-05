@@ -91,12 +91,23 @@ def consulta_cientificos():
         lb.error(" ")
     cone_bd.close()
 
+    # Checar validaciones
+    # Checar la ortografia de los input y de los mensajes de error
+
+
 # Op 4 - Cambios de cientificos
 def cambios_cientificos():
     lb.limpia_pantalla()
     print("--------------------------------------------------")
-    print("-------------- CAMBIOS DE CIENTIFICOS ------------")
+    print("--------------- CAMBIOS CIENTIFICOS --------------")
     print("--------------------------------------------------")
+    id_ci=lb.pide_cadena(5, 5, "Indica el ID del cientifico : ")
+
+    # Hacer un pequeño menu para hacer que el usuario elija si quiere cambiar
+    # uno de los dos datos o los dos datos, (correo, telefono o ambos)
+
+    # Checar la ortografia de las salidas y de los input 
+
 
 # Menu del modulo de cientificos
 def menu_cientificos():
