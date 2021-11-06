@@ -1,6 +1,7 @@
 import utilerias as lb
 
 
+# Alta de proyectos
 def altas_proyectos():
     lb.limpia_pantalla()
     print("--------------------------------------------------")
@@ -8,6 +9,7 @@ def altas_proyectos():
     print("--------------------------------------------------")
 
 
+# Baja de proyectos
 def bajas_proyectos():
     lb.limpia_pantalla()
     print("--------------------------------------------------")
@@ -15,6 +17,7 @@ def bajas_proyectos():
     print("--------------------------------------------------")
 
 
+# Consulta de proyectos
 def consulta_proyectos():
     lb.limpia_pantalla()
     print("--------------------------------------------------")
@@ -22,6 +25,7 @@ def consulta_proyectos():
     print("--------------------------------------------------")
 
 
+# Cambios de proyectos
 def cambios_proyectos():
     lb.limpia_pantalla()
     print("--------------------------------------------------")
@@ -54,3 +58,5 @@ def menu_cientificos():
         if op==4:
             cambios_proyectos()
     lb.limpia_pantalla()
+
+    # Checar ortografia
