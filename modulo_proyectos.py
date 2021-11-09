@@ -15,7 +15,7 @@ def altas_proyectos():
 
     cone_bd=lb.conectar_bd()
     cursor=cone_bd.cursor()
-    query="INSERT INTO proyectos VALUES ('"+id_pro+"','"+nombre_pro+"','"+area_pro+"','"+descripcion_pro+"')"
+    query="INSERT INTO proyectos VALUES ('"+id_pro+"','"+nombre_pro+"','"+area_pro+"','"+descripcion_pro+"','"+id_ci_pro+"')"
 
 
 
