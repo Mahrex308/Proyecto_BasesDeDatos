@@ -45,25 +45,36 @@ def conectar_bd():
     return(cone_bd)
     # Checar
 
-def pide_id():
+def pide_id(Let):
     longitud=0
     cadena="Hello"
     while longitud != 5 or cadena.isnumeric() != True:
-        cadena=input("Indica el ID                 : ")
+        cadena=input(Let)
         longitud=len(cadena)
         if longitud != 5 or cadena.isnumeric() != True:
-            print("ERROR, el ID debe tener exactamente 5 digitos numericos (Ej. 00001)")
-            input()
+            error("ERROR, el ID debe tener exactamente 5 digitos numericos (Ej. 00001)")
     return(cadena)
 
-def pide_telefono():
+def pide_telefono(Let):
     longitud=0
     cadena="Hello"
     while longitud != 10 or cadena.isnumeric() !=  True:
-        cadena=input("Indica el Numero de telefono :")
+        cadena=input(Let)
         longitud=len(cadena)
         if longitud != 10 or cadena.isnumeric() != True:
-            print("ERROR, el Numero telefonico debe tener exactamente 10 digitos numericos (Ej. 7221234567)")
-            input()
+            error("ERROR, el Numero telefonico debe tener exactamente 10 digitos numericos (Ej. 7221234567)")
+    return(cadena)
+
+def pide_correo(Let):
+    longitud=0
+    correo=False
+    while longitud < 3 or longitud > 30 or correo == False:
+        cadena=input(Let)
+        longitud=len(cadena)
+        for i in range(0, longitud):
+            if cadena[i]=="@":
+                correo=True
+        if longitud < 3 or longitud > 30 or correo == False:
+            error("ERROR, el Correo debe de estar entre 3 y 30 caracteres y debe de tener un '@'")
     return(cadena)
 

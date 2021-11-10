@@ -8,18 +8,19 @@ def altas_cientificos():
     print("--------------- ALTA DE CIENTIFICOS --------------")
     print("--------------------------------------------------")
 
-    # id_ci=lb.pide_cadena(5, 5,      "Indica el ID                 : ")
-    id_ci=lb.pide_id()
-    nombre_ci=lb.pide_cadena(1, 15, "Indica el Nombre             : ")
-    ap_ci=lb.pide_cadena(1, 15,     "Indica el Ap. Paterno        : ")
-    am_ci=lb.pide_cadena(1, 15,     "Indica el Ap. Materno        : ")
-    # tel_ci=lb.pide_cadena(10, 10,   "Indica el Numero de telefono : ")
-    tel_ci=lb.pide_telefono()
-    correo_ci=lb.pide_cadena(1, 30, "Indica el Correo             : ")
+    # vid=lb.pide_cadena(5, 5,      "Indica el ID                 : ")
+    vid_ci=lb.pide_id("Indica el ID                 : ")
+    vnom_ci=lb.pide_cadena(1, 15, "Indica el Nombre             : ")
+    vap_ci=lb.pide_cadena(1, 15,  "Indica el Ap. Paterno        : ")
+    vam_ci=lb.pide_cadena(1, 15,  "Indica el Ap. Materno        : ")
+    # vtel_ci=lb.pide_cadena(10, 10,   "Indica el Numero de telefono : ")
+    vtel_ci=lb.pide_telefono("Indica el Numero de telefono : ")
+    # vcor_ci=lb.pide_cadena(3, 30, "Indica el Correo             : ")
+    vcor_ci=lb.pide_correo("Indica el Correo             : ")
 
     cone_bd=lb.conectar_bd()
     cursor=cone_bd.cursor()
-    query="INSERT INTO cientificos VALUES ('"+id_ci+"','"+nombre_ci+"','"+ap_ci+"','"+am_ci+"','"+tel_ci+"','"+correo_ci+"')"
+    query="INSERT INTO cientificos VALUES ('"+vid_ci+"','"+vnom_ci+"','"+vap_ci+"','"+vam_ci+"','"+vtel_ci+"','"+vcor_ci+"')"
 
     # print(query)
     seguro=lb.pide_cadena(1, 1, "Los datos son correctos ¿Desea grabar? [S/N] : ")
@@ -30,7 +31,7 @@ def altas_cientificos():
         except:
             x=0
         if x==0:
-            lb.error("ERROR, el ID se duplica en el archivo de alumnos")
+            lb.error("ERROR, el ID se duplica en el archivo de cientificos")
         else:
             lb.error("Los datos han sido grabados correctamente")
     else:
@@ -38,8 +39,7 @@ def altas_cientificos():
     cone_bd.commit()
     cone_bd.close()
 
-    # FALTAN LAS VALIDACIONES DE QUE SOLO SEAN NUMEROS EN EL "ID" Y EN "NUMERO TELEFONICO"
-    # Comprobar con el doc
+    # Probar
     # Corregir ortografia dentro de los mensajes de error y de los input
 
 
@@ -49,9 +49,11 @@ def bajas_cientificos():
     print("--------------------------------------------------")
     print("--------------- BAJA DE CIENTIFICOS --------------")
     print("--------------------------------------------------")
-    id_ci=lb.pide_cadena(5, 5, "Indica el ID del cientifico a eliminar : ")
 
-    query="DELETE FROM cientificos WHERE id_ci='"+id_ci+"'"
+    # vid_ci=lb.pide_cadena(5, 5, "Indica el ID del cientifico a eliminar : ")
+    vid_ci=lb.pide_id("Indica el ID del cientifico a eliminar : ")
+
+    query="DELETE FROM cientificos WHERE id_ci='"+vid_ci+"'"
     seguro=lb.pide_cadena(1, 1, "¿Seguro de querer eliminar? [S/N] : ")
     seguro=seguro.upper()
     if seguro=="S":
@@ -59,7 +61,7 @@ def bajas_cientificos():
         cursor=cone_bd.cursor()
         x=cursor.execute(query)
         if x==0:
-            lb.error("ERROR, ID inexistente en el archivo de alumnos")
+            lb.error("ERROR, ID inexistente en el archivo de cientificos")
         else:
             lb.error("El registro ha sido eliminado correctamente")
         cone_bd.commit()
@@ -67,7 +69,7 @@ def bajas_cientificos():
     else:
         lb.error("La accion de eliminar ha sido cancelada")
 
-    # Probar las validaciones
+    # Probar 
     # Checar la ortografia
 
     
@@ -77,14 +79,16 @@ def consulta_cientificos():
     print("--------------------------------------------------")
     print("------------- CONSULTA DE CIENTIFICOS ------------")
     print("--------------------------------------------------")
-    id_ci=lb.pide_cadena(5, 5, "Indica el ID del cientifico a consultar : ")
+
+    # vid_ci=lb.pide_cadena(5, 5, "Indica el ID del cientifico a consultar : ")
+    vid_ci=lb.pide_id("Indica el ID del cientifico a consultar : ")
     
-    query="SELECT * FROM cientificos WHERE id_ci='"+id_ci+"'"
+    query="SELECT * FROM cientificos WHERE id_ci='"+vid_ci+"'"
     cone_bd=lb.conectar_bd()
     cursor=cone_bd.cursor()
     x=cursor.execute(query)
     if x==0:
-        lb.error("ERROR, matricula inexistente en el archivo de alumnos")
+        lb.error("ERROR, ID inexistente en el archivo de cientificos")
     else:
         datos_cientificos=cursor.fetchone()
         print("Nombre             : ",datos_cientificos[1])
@@ -95,17 +99,52 @@ def consulta_cientificos():
         lb.error(" ")
     cone_bd.close()
 
-    # Checar validaciones
+    # Probar
     # Checar la ortografia de los input y de los mensajes de error
 
 
 # Op 4 - Cambios de cientificos
 def cambios_cientificos():
+    op=-1
     lb.limpia_pantalla()
     print("--------------------------------------------------")
     print("--------------- CAMBIOS CIENTIFICOS --------------")
     print("--------------------------------------------------")
-    id_ci=lb.pide_cadena(5, 5, "Indica el ID del cientifico : ")
+
+    # vid_ci=lb.pide_cadena(5, 5, "Indica el ID del cientifico : ")
+    vid_ci=lb.pide_id("Indica el ID del cientifico : ")
+
+    while op!=3:
+        lb.limpia_pantalla()
+        print("*************** ¿QUE DESEA CAMBIAR? **************")
+        print("1)  Numero telefonico")
+        print("2)  Correo")
+        # print("n)  Ambos")
+        print("3)  Terminar")
+        print("**************************************************")
+        op=lb.pide_entero(1, 3, "Indica la opcion deseada : ")
+        if op==1:
+            vtel_ci=lb.pide_telefono("Indica el NUEVO numero telefonico  : ")
+            query="UPDATE cientificos SET tel_ci='"+vtel_ci+"' WHERE id_ci='"+vid_ci+"'"
+            
+        if op==2:
+            vcor_ci=lb.pide_correo("Indica el NUEVO correo electronico :")
+            query="UPDATE cientificos SET correo_ci='"+vcor_ci+"' WHERE id_ci='"+vid_ci+"'"
+    
+    cone_bd=lb.conectar_bd()
+    cursor=cone_bd.cursor()
+    x=cursor.execute(query)
+
+    if x==0:
+        lb.error("ERROR, el ID no existe en el archivo de cientificos")
+    else:
+        lb.error("El cambio ha sido realizado")
+    cone_bd.commit()
+    cone_bd.close()
+
+    
+
+    
 
     # Hacer un pequeño menu para hacer que el usuario elija si quiere cambiar
     # uno de los dos datos o los dos datos, (correo, telefono o ambos)
