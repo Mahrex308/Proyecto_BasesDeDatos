@@ -130,7 +130,12 @@ def cambios_cientificos():
         if op==2:
             vcor_ci=lb.pide_correo("Indica el NUEVO correo electronico :")
             query="UPDATE cientificos SET correo_ci='"+vcor_ci+"' WHERE id_ci='"+vid_ci+"'"
-    
+
+        # if op==n:
+            # vtel_ci=lb.pide_telefono("Indica el NUEVO numero telefonico  :")
+            # vcor_ci=lb.pide_correo("Indica el NUEVO correo electronico :")
+            # query="UPDATE cientificos SET tel_ci='"+vtel_ci+"' AND correo_ci='"+vcor_ci+"' WHERE id_ci='"+vid_ci+"'"
+            
     cone_bd=lb.conectar_bd()
     cursor=cone_bd.cursor()
     x=cursor.execute(query)
@@ -141,10 +146,6 @@ def cambios_cientificos():
         lb.error("El cambio ha sido realizado")
     cone_bd.commit()
     cone_bd.close()
-
-    
-
-    
 
     # Hacer un pequeño menu para hacer que el usuario elija si quiere cambiar
     # uno de los dos datos o los dos datos, (correo, telefono o ambos)
