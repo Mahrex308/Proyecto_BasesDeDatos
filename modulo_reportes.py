@@ -16,14 +16,74 @@ def menu_cientificos():
         print("5)  Lista de proyectos asignados a un cientifico")
         print("6)  Regresar al menú principal")
         print("-------------------------------------------------")
-
         op=lb.pide_entero(1, 5, "Indica la opcion deseada : ")
         if op==1:
             altas_proyectos()
         if op==2:
             bajas_proyectos()
         if op==3:
-            consulta_proyectos()
+            reportes_proyecto_area()
         if op==4:
-            cambios_proyectos()
+            cientificos_proyecto_area()
+        if op==5:
+            proyectos_asignados_cientifico()
     lb.limpia_pantalla()
+
+def reportes_proyecto_area():
+    lb.limpia_pantalla()
+    varea=lb.pide_cadena(1, 15,         "Indica el area de investigacion del proyecto : ")
+    query="SELECT * FROM proyectos WHERE area_pro='"+varea+"' ORDER BY id_pro, nombre_pro, descripcion_pro, id_ci_pro"
+    lb.limpia_pantalla()
+    print("---------------------------------------------------------------------------------------------------------------------------")
+    print("-----------------------Listado de proyectos ordenado por area--------------------------------------------------------------")
+    print("Id     nombre                        Descripción           Id Cientifico                     ")
+    print("---------------------------------------------------------------------------------------------------------------------------")
+    cone_bd=lb.conectar_bd()
+    cursor=cone_bd.cursor()
+    x=cursor.execute(query)
+    lista=cursor.fetchall()
+    for reg in lista:
+        print(reg[0]+espa(7,reg[0])+reg[1]+espa(17,reg[1])+reg[2]+espa(202,reg[2])+reg[3])
+    lb.error("")
+    cone_bd.close()
+
+def cientificos_proyecto_area():
+    lb.limpia_pantalla()
+    varea=lb.pide_cadena(1, 15,         "Indica el area de investigacion del proyecto : ")
+    query="SELECT id_ci, nombre_ci, ap_ci, am_ci, tel_ci, correo_ci"
+    query+="  FROM cientificos, proyectos"
+    query+="  WHERE area_pro='"+varea+"'and id_ci=id_ci_pro"
+    lb.limpia_pantalla()
+    print("---------------------------------------------------------------------------------------------------------------------------")
+    print("-----------------------Lista de cientificos por area--------------------------------------------------------------")
+    print("Id     nombre                        Ap. Paterno           Ap. Materno        Telefono     Correo                     ")
+    print("---------------------------------------------------------------------------------------------------------------------------")
+    cone_bd=lb.conectar_bd()
+    cursor=cone_bd.cursor()
+    x=cursor.execute(query)
+    lista=cursor.fetchall()
+    for reg in lista:
+        print(reg[0]+espa(17,reg[0])+reg[1]+espa(17,reg[1])+reg[2]+espa(17,reg[2])+reg[3]+espa(12,reg[3])+reg[4])
+    lb.error("")
+    cone_bd.close()
+
+
+def proyectos_asignados_cientifico():
+    lb.limpia_pantalla()
+    vid=lb.pide_cadena(1, 5,         "Indica el Id del cientifico : ")
+    query="SELECT id_pro, nombre_pro, area_pro, descripcion_pro"
+    query+="FROM proyectos"
+    query+="WHERE id_ci_pro='"+vid+"'"
+    lb.limpia_pantalla()
+    print("---------------------------------------------------------------------------------------------------------------------------")
+    print("-----------------------Lista de proyectos asignados a un cientifico--------------------------------------------------------------")
+    print("Id     nombre        Area                Descripción           ")
+    print("---------------------------------------------------------------------------------------------------------------------------")
+    cone_bd=lb.conectar_bd()
+    cursor=cone_bd.cursor()
+    x=cursor.execute(query)
+    lista=cursor.fetchall()
+    for reg in lista:
+        print(reg[0]+espa(7,reg[0])+reg[1]+espa(17,reg[1])+reg[2]+espa(17,reg[2])+reg[3]+espa(202,reg[3])
+    lb.error("")
+    cone_bd.close()
