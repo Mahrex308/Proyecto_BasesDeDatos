@@ -44,3 +44,26 @@ def conectar_bd():
     cone_bd=my.connect(host="localhost",user="root",password="",database="sistema_alumnos_materia_clase")
     return(cone_bd)
     # Checar
+
+def pide_id():
+    longitud=0
+    cadena="Hello"
+    while longitud != 5 or cadena.isnumeric() != True:
+        cadena=input("Indica el ID                 : ")
+        longitud=len(cadena)
+        if longitud != 5 or cadena.isnumeric() != True:
+            print("ERROR, el ID debe tener exactamente 5 digitos numericos (Ej. 00001)")
+            input()
+    return(cadena)
+
+def pide_telefono():
+    longitud=0
+    cadena="Hello"
+    while longitud != 10 or cadena.isnumeric() !=  True:
+        cadena=input("Indica el Numero de telefono :")
+        longitud=len(cadena)
+        if longitud != 10 or cadena.isnumeric() != True:
+            print("ERROR, el Numero telefonico debe tener exactamente 10 digitos numericos (Ej. 7221234567)")
+            input()
+    return(cadena)
+

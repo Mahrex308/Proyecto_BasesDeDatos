@@ -7,11 +7,14 @@ def altas_cientificos():
     print("--------------------------------------------------")
     print("--------------- ALTA DE CIENTIFICOS --------------")
     print("--------------------------------------------------")
-    id_ci=lb.pide_cadena(5, 5,      "Indica el ID                 : ")
+
+    # id_ci=lb.pide_cadena(5, 5,      "Indica el ID                 : ")
+    id_ci=lb.pide_id()
     nombre_ci=lb.pide_cadena(1, 15, "Indica el Nombre             : ")
     ap_ci=lb.pide_cadena(1, 15,     "Indica el Ap. Paterno        : ")
     am_ci=lb.pide_cadena(1, 15,     "Indica el Ap. Materno        : ")
-    tel_ci=lb.pide_cadena(10, 10,   "Indica el Numero de telefono : ")
+    # tel_ci=lb.pide_cadena(10, 10,   "Indica el Numero de telefono : ")
+    tel_ci=lb.pide_telefono()
     correo_ci=lb.pide_cadena(1, 30, "Indica el Correo             : ")
 
     cone_bd=lb.conectar_bd()

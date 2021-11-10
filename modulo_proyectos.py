@@ -7,6 +7,7 @@ def altas_proyectos():
     print("--------------------------------------------------")
     print("--------------- ALTA DE PROYECTOS ----------------")
     print("--------------------------------------------------")
+    
     id_pro=lb.pide_cadena(5, 5,            "Indica el numero de proyecto : ")
     nombre_pro=lb.pide_cadena(1, 15,       "Indica el nombre del proyecto : ")
     area_pro=lb.pide_cadena(1, 15,         "Indica el area de investigacion del proyecto : ")
