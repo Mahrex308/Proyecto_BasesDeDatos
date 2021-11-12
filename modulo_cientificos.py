@@ -104,7 +104,7 @@ def consulta_cientificos():
 
 
 # Op 4 - Cambios de cientificos
-def cambios_cientificos():
+def cambios_cientificos(op):
     op=-1
     lb.limpia_pantalla()
     print("--------------------------------------------------")

@@ -1,5 +1,11 @@
 import utilerias as lb
 
+def espa(posiciones, elemento):
+    x=(posiciones-len(elemento))*" "
+    return x
+
+
+
 
 # Menu del modulo de proyectos
 def menu_cientificos():
@@ -34,10 +40,11 @@ def reportes_proyecto_area():
     varea=lb.pide_cadena(1, 15,         "Indica el area de investigacion del proyecto : ")
     query="SELECT * FROM proyectos WHERE area_pro='"+varea+"' ORDER BY id_pro, nombre_pro, descripcion_pro, id_ci_pro"
     lb.limpia_pantalla()
-    print("---------------------------------------------------------------------------------------------------------------------------")
-    print("-----------------------Listado de proyectos ordenado por area--------------------------------------------------------------")
-    print("Id     nombre                        Descripción           Id Cientifico                     ")
-    print("---------------------------------------------------------------------------------------------------------------------------")
+    print("----------------------------------------------------------------------------------------------------")
+    print("------------------------------ LISTADO DE PROYECTOS ORDENADOS POR AREA -----------------------------")
+    print("----------------------------------------------------------------------------------------------------")
+    print("Id     Nombre                        Descripción                  ID del Cientifico                 ")
+    #      12345  123456789/12345  123456789/123456789/123456789/123456789/  12345
     cone_bd=lb.conectar_bd()
     cursor=cone_bd.cursor()
     x=cursor.execute(query)
@@ -49,15 +56,18 @@ def reportes_proyecto_area():
 
 def cientificos_proyecto_area():
     lb.limpia_pantalla()
-    varea=lb.pide_cadena(1, 15,         "Indica el area de investigacion del proyecto : ")
+    varea=lb.pide_cadena(1, 15, "Indica el area de investigacion del proyecto : ")
+
     query="SELECT id_ci, nombre_ci, ap_ci, am_ci, tel_ci, correo_ci"
     query+="  FROM cientificos, proyectos"
     query+="  WHERE area_pro='"+varea+"'and id_ci=id_ci_pro"
+    
     lb.limpia_pantalla()
-    print("---------------------------------------------------------------------------------------------------------------------------")
-    print("-----------------------Lista de cientificos por area--------------------------------------------------------------")
-    print("Id     nombre                        Ap. Paterno           Ap. Materno        Telefono     Correo                     ")
-    print("---------------------------------------------------------------------------------------------------------------------------")
+    print("----------------------------------------------------------------------------------------------------")
+    print("---------------------------------- LISTA DE CIENTIFICOS POR AREA -----------------------------------")
+    print("----------------------------------------------------------------------------------------------------")
+    print("ID     Nombre           Ap. Paterno      Ap. Materno      Telefono    Correo                        ")
+    #      12345  123456789/12345  123456789/12345  123456789/12345  123456789/  123456789/123456789/123456789/
     cone_bd=lb.conectar_bd()
     cursor=cone_bd.cursor()
     x=cursor.execute(query)
@@ -75,10 +85,11 @@ def proyectos_asignados_cientifico():
     query+="FROM proyectos"
     query+="WHERE id_ci_pro='"+vid+"'"
     lb.limpia_pantalla()
-    print("---------------------------------------------------------------------------------------------------------------------------")
-    print("-----------------------Lista de proyectos asignados a un cientifico--------------------------------------------------------------")
-    print("Id     nombre        Area                Descripción           ")
-    print("---------------------------------------------------------------------------------------------------------------------------")
+    print("----------------------------------------------------------------------------------------------------")
+    print("--------------------------- LISTA DE PROYECTOS ASIGNADOS A UN CIENTIFICO ---------------------------")
+    print("----------------------------------------------------------------------------------------------------")
+    print("ID     Nombre           Area             Descripción                                                ")
+    #      12345  123456789/12345  123456789/12345  123456789/123456789/123456789/123456789/
     cone_bd=lb.conectar_bd()
     cursor=cone_bd.cursor()
     x=cursor.execute(query)
