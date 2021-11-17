@@ -14,6 +14,7 @@ def menu_principal():
         print("2)  Proyectos")
         print("3)  Reportes")
         print("4)  Terminar")
+
         
 
         op=lb.pide_entero(1, 4, "Indica la opcion deseada : ")
